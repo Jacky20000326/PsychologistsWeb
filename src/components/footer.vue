@@ -14,10 +14,13 @@
             </div>
         </div>
         <div class="subscription">
+            <div class="test">
+                {{data}}
+            </div>
             <div class="subscription-p">訂閱我們獲得第一手資訊!</div> 
             <div class="user-input">
-                <input type="text" placeholder="輸入信箱地址">
-                <button>訂閱</button>
+                <input type="text" placeholder="輸入信箱地址" v-model="payload">
+                <button @click="getUserMail">訂閱</button>
             </div>
         </div>
     </footer>
@@ -25,11 +28,23 @@
 
 <script>
 export default {
-
+    data(){
+        return {
+            payload:""
+        }
+    },
+    methods:{
+        getUserMail(){
+            this.$store.dispatch("getUserEmail",this.payload)
+        }
+    }
 }
 </script>
 
 <style scoped>
+.test{
+    color: red;
+}
 footer{
     width: 100%;
     height: 408px;

@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 import get_school_data from '../file/school.json'
 import all_school from '../file/allSchool.json'
 import Psychologists_data from '../file/Psychologists.json'
-
+import axios from 'axios';
 
 // https://schoolfile.blob.core.windows.net/uploadfile/school.json?sp=r&st=2021-08-31T15:39:54Z&se=2023-07-29T23:39:54Z&spr=https&sv=2020-08-04&sr=b&sig=tw%2FMh7qDl48N406Ab5hlMSrDCXjVi%2FalRIqw56j7sQc%3D
 // school api
@@ -31,6 +31,7 @@ export default createStore({
     identify: [],
     topic:     [],
     filter_array: [],
+    
     
 
 
@@ -200,7 +201,9 @@ export default createStore({
     clean_input(state){
       state.identify = [],
       state.topic = []
-    }
+    },
+   
+
 
 
     
@@ -219,10 +222,13 @@ export default createStore({
       commit('all_school',all_school.all_data)
     },
     async Psychologists_data({commit}){
-     
-
       commit('Psychologists_data',Psychologists_data)
-    }    
+    },
+    async getUserEmail(context,payload){
+      console.log(payload)
+      await axios.post("https://git.heroku.com/stormy-oasis-70426.git",{email:payload}).then((response) => console.log(response))
+      .catch((error) => console.log(error))
+    }
   },
   modules: {
     psychologist_filter
