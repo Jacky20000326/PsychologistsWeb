@@ -226,7 +226,7 @@ export default createStore({
     },
     async getUserEmail(context,payload){
       console.log(payload)
-      await axios.post("https://git.heroku.com/stormy-oasis-70426.git",{email:payload}).then((response) => console.log(response))
+      await axios.post("https://git.heroku.com/stormy-oasis-70426.git/api/Info/getmail",{email:payload}).then((response) => console.log(response))
       .catch((error) => console.log(error))
     }
   },
